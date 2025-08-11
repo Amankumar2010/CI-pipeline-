@@ -7,13 +7,13 @@ It’s designed to run in **ARM-based environments** and avoids system-wide pack
 
 ## 📂 Project Structure
 
+.
 ├── .github/
 │ └── workflows/
 │ └── ci.yml # GitHub Actions pipeline definition
 ├── requirements.txt # Python dependencies
 ├── your_script.py # Main Python script
 └── README.md # Project documentation
----
 
 ## ⚙️ CI Workflow Overview
 
@@ -55,6 +55,7 @@ pip install -r requirements.txt
 python your_script.py
 ```
 ✅ Notes
+
 PEP 668 Compliance – Avoids externally-managed-environment errors by using a virtual environment instead of installing system-wide packages.
 
 Replace your_script.py with the actual entry point of your project.
@@ -62,4 +63,5 @@ Replace your_script.py with the actual entry point of your project.
 Update requirements.txt as your dependencies change.
 
 📜 License
+
 This project is licensed under the MIT License – see the LICENSE file for details.
