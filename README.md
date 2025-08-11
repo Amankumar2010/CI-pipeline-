@@ -1,68 +1,86 @@
-# 🚀 CI Pipeline – Python Project
+# 🚀 Raspberry Pi Self-Hosted GitHub Actions Runner
 
-This repository contains a simple **CI pipeline** for running Python scripts using **GitHub Actions**.  
-It’s designed to run in **ARM-based environments** and avoids system-wide package installation issues by using a **virtual environment**.
+[![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python&logoColor=white)](https://www.python.org/)
+[![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-Running-success?logo=githubactions&logoColor=white)](https://github.com/features/actions)
+[![Raspberry Pi](https://img.shields.io/badge/Running%20on-Raspberry%20Pi%205-red?logo=raspberrypi&logoColor=white)](https://www.raspberrypi.com/)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+
+A simple yet powerful setup to run **GitHub Actions** on your own **Raspberry Pi 5 (aarch64)** as a self-hosted runner.  
+Perfect for CI/CD pipelines when you want control, speed, and fun with ARM-based hardware.
 
 ---
 
 ## 📂 Project Structure
+```
+|
++-- .github/
+|   +-- workflows/
+|       +-- ci.yml              # GitHub Actions workflow definition
+|
++-- requirements.txt            # Python dependencies
++-- your_script.py              # Main Python script
++-- README.md                   # Project documentation
+```
 
-.
-├── .github/
-│   └── workflows/
-│       └── ci.yml          # GitHub Actions pipeline definition
-├── requirements.txt        # Python dependencies
-├── your_script.py          # Main Python script
-└── README.md               # Project documentation
-
-
-## ⚙️ CI Workflow Overview
-
-The workflow (`.github/workflows/ci.yml`) performs the following steps:
-
-1. **Trigger**
-   - Runs on every push and pull request to the `main` branch.
-   
-2. **Environment**
-   - Uses Ubuntu runners with ARM architecture.
-   
-3. **Steps**
-   - Checks out the repository code.
-   - Sets up Python 3.12.
-   - Creates and activates a **virtual environment**.
-   - Installs project dependencies from `requirements.txt`.
-   - Runs the main Python script.
 
 ---
 
-## 🛠️ Local Development
+## ⚡ Features
 
-To run the script locally:
+✅ Self-hosted GitHub Actions runner on Raspberry Pi 5  
+✅ Runs Python scripts automatically on code push  
+✅ ARM64-compatible  
+✅ Lightweight & low power consumption  
+✅ Kubernetes-friendly setup  
 
+---
+
+## 🛠️ Setup Instructions
+
+### 1️⃣ Clone the repository
 ```
-# Clone the repository
 git clone https://github.com/your-username/your-repo.git
 cd your-repo
-
-# Create and activate a virtual environment
-python3 -m venv venv
-source venv/bin/activate   # Linux / Mac
-venv\Scripts\activate      # Windows
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run the script
-python your_script.py
 ```
-✅ Notes
+2️⃣ Install dependencies
+```
+pip install -r requirements.txt
+```
 
-PEP 668 Compliance – Avoids externally-managed-environment errors by using a virtual environment instead of installing system-wide packages.
+3️⃣ Configure GitHub Actions runner on Raspberry Pi
+Follow the official guide:
+Self-Hosted Runners - GitHub Docs
 
-Replace your_script.py with the actual entry point of your project.
+Example setup:
 
-Update requirements.txt as your dependencies change.
+```
+mkdir actions-runner && cd actions-runner
+curl -o actions-runner-linux-arm64-2.317.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.317.0/actions-runner-linux-arm64-2.317.0.tar.gz
+tar xzf ./actions-runner-linux-arm64-2.317.0.tar.gz
+./config.sh --url https://github.com/your-username/your-repo --token YOUR_RUNNER_TOKEN
+sudo ./svc.sh install
+sudo ./svc.sh start
+```
 
-📜 License
+🧪 Test Your Setup
+Push any changes to your repo:
 
-This project is licensed under the MIT License – see the LICENSE file for details.
+```
+git add .
+git commit -m "Test pipeline"
+git push
+```
+
+GitHub Actions will trigger the self-hosted runner on your Pi.
+
+📌 Notes
+Make sure your Raspberry Pi 5 is always on and connected to the internet.
+
+The runner service starts automatically on boot after sudo ./svc.sh install.
+
+Works seamlessly with Kubernetes deployments.
+
+
+📄 License
+
+This project is licensed under the MIT License.
