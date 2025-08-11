@@ -74,13 +74,15 @@ git push
 GitHub Actions will trigger the self-hosted runner on your Pi.
 
 📌 Notes
-Make sure your Raspberry Pi 5 is always on and connected to the internet.
 
-The runner service starts automatically on boot after sudo ./svc.sh install.
+  1. Make sure your Raspberry Pi 5 is always on and connected to the internet.
 
-Works seamlessly with Kubernetes deployments.
+  2. The runner service starts automatically on boot after sudo ./svc.sh install.
+
+  3. Works seamlessly with Kubernetes deployments.
 
 
 📄 License
 
 This project is licensed under the MIT License.
+
