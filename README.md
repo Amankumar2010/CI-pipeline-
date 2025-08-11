@@ -9,11 +9,12 @@ It’s designed to run in **ARM-based environments** and avoids system-wide pack
 
 .
 ├── .github/
-│ └── workflows/
-│ └── ci.yml # GitHub Actions pipeline definition
-├── requirements.txt # Python dependencies
-├── your_script.py # Main Python script
-└── README.md # Project documentation
+│   └── workflows/
+│       └── ci.yml          # GitHub Actions pipeline definition
+├── requirements.txt        # Python dependencies
+├── your_script.py          # Main Python script
+└── README.md               # Project documentation
+
 
 ## ⚙️ CI Workflow Overview
 
