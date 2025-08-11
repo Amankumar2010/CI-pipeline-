@@ -1,4 +1,4 @@
-name: Hello World CI (Mac Self-Hosted)
+name: Hello World CI (Raspberry Pi Runner)
 
 on:
   push:
@@ -8,16 +8,28 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: self-hosted   # ✅ Use our Mac runner
+    # Tell GitHub to only use the Pi runner
+    runs-on: [self-hosted, linux, arm64]
 
     steps:
+      # 1️⃣ Check out the repository code
       - name: Check out code
         uses: actions/checkout@v4
 
-      - name: Install dependencies
+      # 2️⃣ Install dependencies
+      - name: Install Python & pip (if not already installed)
         run: |
-          pip3 install --upgrade pip
-          pip3 install -r requirements.txt
+          sudo apt-get update
+          sudo apt-get install -y python3 python3-pip
 
-      - name: Run tests
+      # 3️⃣ Upgrade pip
+      - name: Upgrade pip
+        run: python3 -m pip install --upgrade pip
+
+      # 4️⃣ Install project requirements
+      - name: Install requirements
+        run: pip3 install -r requirements.txt
+
+      # 5️⃣ Run tests
+      - name: Run pytest
         run: pytest -v
